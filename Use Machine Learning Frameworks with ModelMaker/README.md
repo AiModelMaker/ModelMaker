@@ -2,7 +2,7 @@
 ## 1.基础框架
 	    ModelMaker基础框架预装了常用的算法框架及工具包，用户只需要专注于训练和推理代码编写，无须关心环境安装及配置等；同时，ModelMaker对框架底层进行了深度的优化，保证平台每个框架都有最优的运行效率。
         当前提供了以下几个算法框架：
-		    tensorflow
+            tensorflow
             mxnet
             caffe
             pytorch		
