@@ -83,7 +83,8 @@ print(r.text)
 
 ```
 运行效果如下：
-![模拟推理](http://https://github.com/AiModelMaker/ModelMaker/blob/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/%E6%A8%A1%E6%8B%9F%E6%8E%A8%E7%90%86.png)
+![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/prediect%20demo.png)
+
 
 
 
