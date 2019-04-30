@@ -47,7 +47,7 @@
 　　响应内容为json格式，返回请求图片，经过推理后，归属于每个分类的概率，概率越高，则此图片归属于此分类的可能性越高。
     
     {
-    	"success":true,
+        "success":true,
         "predictions":[
             {
                 "label":"class_name1",
