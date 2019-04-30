@@ -64,7 +64,7 @@ _ _ _
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
 部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK、SK信息，后续模拟推理时，需要依赖这三个信息。  
-
+![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E.png)
 
 ## 5.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
