@@ -5,7 +5,7 @@
 ## 2.数据集准备
 　　MNIST数据集的下载地址： http://yann.lecun.com/exdb/mnist/  
 　　需要下载以下数据集：  
-　　![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/mnist-dataset.png)
+　　![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/mnist-dataset.png)  
 　　需要下载MNIST数据集，并上传到s3对象存储空间，训练时需要将s3信息告知ModelMaker，ModelMaker会将数据集下载到容器的/opt/ai/input/data/目录，供训练代码读取和使用。  
 ## 3.代码及依赖环境准备
 ### 3.1代码
