@@ -9,14 +9,14 @@
 　　需要下载MNIST数据集，并上传到s3对象存储空间，训练时需要将s3信息告知ModelMaker，ModelMaker会将数据集下载到容器的/opt/ai/input/data/目录，供训练代码读取和使用。  
 ## 3.代码及依赖环境准备
 ### 3.1代码
-　　基于tensorflow基础框架，需要自己编写训练及推理代码，并上传代码到s3或者github，并将训练及推理阶段将代码下载信息告知ModelMaker，ModelMaker会将代码下载到/opt/ai/src/目录下。（可以从code目录获取本例代码）
-　　训练代码需要关注以下路径信息：
-　　　　数据集目录： /opt/ai/input/data/
-　　　　其他输入文件目录：/opt/ai/input/名称/
-　　　　训练输出目录(用于存储模型、日志等需要持久化的数据)：/opt/ai/output/
-　　　　分布式训练时实例信息：/opt/ai/config/resource.json
-　　推理代码需要关注以下路径信息：
-　　　　模型文件目录：/opt/ai/model/
+　　基于tensorflow基础框架，需要自己编写训练及推理代码，并上传代码到s3或者github，并将训练及推理阶段将代码下载信息告知ModelMaker，ModelMaker会将代码下载到/opt/ai/src/目录下。（可以从code目录获取本例代码）  
+　　训练代码需要关注以下路径信息：  
+　　　　数据集目录： /opt/ai/input/data/  
+　　　　其他输入文件目录：/opt/ai/input/名称/  
+　　　　训练输出目录(用于存储模型、日志等需要持久化的数据)：/opt/ai/output/  
+　　　　分布式训练时实例信息：/opt/ai/config/resource.json  
+　　推理代码需要关注以下路径信息：  
+　　　　模型文件目录：/opt/ai/model/  
 ### 3.2依赖库（可选）
 　　基础镜像中有预装了部分python库，如果还需要其它python库，可以在代码目录下的 requirements.txt 文件中描述代码所依赖的库文件列表，ModelMaker平台会帮忙安装此部分库文件。  
 　　requirements.txt文件可以使用pip freeze > requirements.txt命令生成，文件格式如下：  
