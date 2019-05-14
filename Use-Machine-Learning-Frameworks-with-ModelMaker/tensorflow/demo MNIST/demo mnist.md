@@ -1,11 +1,11 @@
 # MNIST手写数字识别Demo(基于tensorflow基础框架)
 ## 1.数据集介绍  
 　　本例采用MNIST手写数据集，MNIST是深度学习的经典入门demo，他是由6万张训练图片和1万张测试图片构成的，这些图片是采集的不同的人手写从0到9的数字，每张图片都是28*28大小。这些图片并不是传统意义上的png或jepg格式的图片，因为png或jpg的图片格式，会带有很多干扰信息(如:数据块，图片头，图片尾，长度等等)，这些图片会被处理成很简易的二维数组，如图:
-  ![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/mnist.png)
+  ![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/mnist.png)
 ## 2.数据集准备
 　　MNIST数据集的下载地址： http://yann.lecun.com/exdb/mnist/  
 　　需要下载以下数据集：  
-　　![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/mnist-dataset.png)  
+　　![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/mnist-dataset.png)  
 　　需要下载MNIST数据集，并上传到s3对象存储空间，训练时需要将s3信息告知ModelMaker，ModelMaker会将数据集下载到容器的/opt/ai/input/data/目录，供训练代码读取和使用。  
 ## 3.代码及依赖环境准备
 ### 3.1代码
@@ -72,7 +72,7 @@ _ _ _
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
 部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK信息，后续模拟推理时，需要依赖这些信息。  
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/predict_info.png)
+![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/predict_info.png)
 ## 5.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
 ```
@@ -112,4 +112,4 @@ if __name__ == '__main__':
   main()
 ```
 jupyter上运行效果如下：
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20Machine%20Learning%20Frameworks%20with%20ModelMaker/tensorflow/demo%20MNIST/images/predict_request.png)
+![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/predict_request.png)

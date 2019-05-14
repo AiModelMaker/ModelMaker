@@ -6,7 +6,7 @@
 　　roses  (641张)  
 　　sunflowers  (699张)  
 　　tulips  (799张)  
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/flowers.png)
+![Image text](../images/flowers.png)
 
 ## 2.数据集准备
 　　需要下载github上data目录中的训练数据，并上传到对象存储空间。data目录中已经预先将flower数据集按8：2的比例，分隔成训练集(train文件夹)和验证集(validation文件夹)。  
@@ -64,7 +64,7 @@ _ _ _
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
 部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK信息，后续模拟推理时，需要依赖这些信息。  
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E.png)
+![Image text](../images/%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E.png)
 
 ## 5.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
@@ -83,7 +83,7 @@ print(r.text)
 
 ```
 运行效果如下：
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use%20ModelMaker%20Built-in%20Algorithms/image%20class%20inception_v3/images/prediect%20demo.png)
+![Image text](../images/prediect%20demo.png)
 
 
 
