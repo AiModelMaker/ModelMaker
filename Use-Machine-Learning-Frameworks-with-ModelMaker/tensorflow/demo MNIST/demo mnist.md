@@ -1,11 +1,11 @@
 # MNIST手写数字识别Demo(基于tensorflow基础框架)
 ## 1.数据集介绍  
 　　本例采用MNIST手写数据集，MNIST是深度学习的经典入门demo，他是由6万张训练图片和1万张测试图片构成的，这些图片是采集的不同的人手写从0到9的数字，每张图片都是28*28大小。这些图片并不是传统意义上的png或jepg格式的图片，因为png或jpg的图片格式，会带有很多干扰信息(如:数据块，图片头，图片尾，长度等等)，这些图片会被处理成很简易的二维数组，如图:
-  ![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/mnist.png)
+  ![image test](images/mnist.png)
 ## 2.数据集准备
 　　MNIST数据集的下载地址： http://yann.lecun.com/exdb/mnist/  
 　　需要下载以下数据集：  
-　　![image test](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/mnist-dataset.png)  
+　　![image test](images/mnist-dataset.png)  
 　　需要下载MNIST数据集，并上传到s3对象存储空间，训练时需要将s3信息告知ModelMaker，ModelMaker会将数据集下载到容器的/opt/ai/input/data/目录，供训练代码读取和使用。  
 ## 3.代码及依赖环境准备
 ### 3.1代码
@@ -42,6 +42,10 @@ _ _ _
 _ _ _
 输出：  
 　　　　训练输出位置： 选择模型、日志文件保存的s3位置，系统会将/opt/ai/output下的所有内容（如log、模型等）输出至该目录  
+　　　　监控指标（可选）：系统将标准输出中满足正则的日志，提取为监控指标并绘制图表。正则表达式最多可提取两个值，默认第一个值为y，第二个值为x（x可无）  
+　　　　　　指标名称：本例中填写 accuracy  
+　　　　　　正则表达式：本例中填写 .*?accuracy\s(.*)  
+　　　　　　日志样例：本例中填写 step 100, training accuracy 0.86  
 _ _ _
 运行配置：  
 　　　　资源配置： 选择训练所使用的硬件资源 本例中使用最小配置 4核8G即可  
@@ -50,7 +54,26 @@ _ _ _
 　　　　最长训练时间： 放空即可  
 _ _ _
 配置完成后，点击开始训练，即可开始训练。训练过程中可通过运行监控及训练日志，查看训练情况，训练完成后，任务状态会更新为训练完成。  
-## 4.推理部署
+## 5.训练过程
+可以在训练任务详情页中查看训练过程，主要有以下几部分信息可以查看：  
+![Image text](images/info.png)
+　　任务信息：  
+　　　　包含训练过程的基础信息，如任务状态，运行时长等  
+　　配置信息：  
+　　　　训练过程中数据集、输出位置、资源配置等配置信息  
+　　运行监控：  
+　　　　训练过程中CPU、内存等资源使用信息  
+　　训练日志：  
+　　　　训练日志训练过程中输出到标准输出的日志信息，如训练过程中的 training accuracy 变化等  
+　　监控指标：  
+　　　　监控指标，创建训练任务时，配置的监控指标采集到的数据  
+![Image text](images/monitor.png)
+　　输出结果：  
+　　　　训练输出位置的文件内容，如下图，可以看到模型文件已生成  
+![Image text](images/output.png)
+
+
+## 6.推理部署
 训练完成后，可以在推理部署页面进行已训练模型的发布。  
 _ _ _
 模型管理->添加模型：  
@@ -72,8 +95,8 @@ _ _ _
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
 部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK信息，后续模拟推理时，需要依赖这些信息。  
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/predict_info.png)
-## 5.模拟推理
+![Image text](images/predict_info.png)
+## 7.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
 ```
 from __future__ import print_function
@@ -112,4 +135,4 @@ if __name__ == '__main__':
   main()
 ```
 jupyter上运行效果如下：
-![Image text](https://raw.githubusercontent.com/AiModelMaker/ModelMaker/master/Use-Machine-Learning-Frameworks-with-ModelMaker/tensorflow/demo%20MNIST/images/predict_request.png)
+![Image text](images/predict_request.png)
