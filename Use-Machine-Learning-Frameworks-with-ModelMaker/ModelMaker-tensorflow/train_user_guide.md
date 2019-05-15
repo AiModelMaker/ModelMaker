@@ -1,6 +1,6 @@
-# 使用 ModelMaker 训练模型
+# 使用 ModelMaker-tensorflow 训练模型
 
-ModelMaker 训练部分基于 [TensorFlow Estimator API](https://tensorflow.google.cn/guide/estimators)，一种可极大简化机器学习编程的高阶 API。跟随本文档，您可以快速了解如何使用 ModelMaker 构建一个基于 [MNIST 数据集](http://yann.lecun.com/exdb/mnist/) 的训练任务，并最终输出可用于部署的 SavedModel 模型。如果您已经熟悉 Estimator，您会发现将您的代码迁移至 ModelMaker 仅需极小的改动。
+ModelMaker tensorflow训练部分基于 [TensorFlow Estimator API](https://tensorflow.google.cn/guide/estimators)，一种可极大简化机器学习编程的高阶 API。跟随本文档，您可以快速了解如何使用 ModelMaker 构建一个基于 [MNIST 数据集](http://yann.lecun.com/exdb/mnist/) 的训练任务，并最终输出可用于部署的 SavedModel 模型。如果您已经熟悉 Estimator，您会发现将您的代码迁移至 ModelMaker 仅需极小的改动。
 
 
 
@@ -312,16 +312,16 @@ def serving_input_receiver_fn():
 
 
 
-## 使用 parameters.json 配置参数
+## 修改参数
 
-通过在创建训练界面上传参数配置文件 `parameters.json`，用户可以
+通过在创建训练界面->运行设置中添加运行参数，用户可以
 
 - 修改系统默认的训练参数
 - 创建任意的自定义参数，这些参数会以字典的形式被完整地传参至 `model_fn`， `train_input_fn` 以及 `eval_input_fn` 的 `params` 参数中
 
 ### 修改默认训练参数
 
-在 `parameters.json` 中对以下参数赋值，可以修改系统默认的训练参数：
+在创建训练界面->运行设置中添加运行参数，对以下参数赋值，可以修改系统默认的训练参数：
 
 - `save_checkpoints_steps`: 每隔多少步存储一次 checkpoint，不能与`save_checkpoints_secs` 同时设置；默认值：None
 - `save_checkpoints_secs`：每隔多少秒存储一次 checkpoint，不能与 `save_checkpoints_steps`同时设置，若两者均未设置，则该项默认为600秒，如果两项都为None，则 checkpoint 被禁用；默认值：600

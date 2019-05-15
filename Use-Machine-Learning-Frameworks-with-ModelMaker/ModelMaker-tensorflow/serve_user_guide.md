@@ -1,6 +1,6 @@
-# 使用 ModelMaker 一键部署模型
+# 使用 ModelMaker-tensorflow 一键部署模型
 
-ModelMaker 部署部分基于 [TensorFlow Serving](https://github.com/tensorflow/serving)，一个 TensorFlow 官方的开箱即用的部署工具，借助 TensorFlow Serving，您几乎不需要任何额外的操作就可以轻松地将训练好的模型部署至我们的服务器上。如果您还没有可用于部署的 [SavedModel](https://tensorflow.google.cn/guide/saved_model#build_and_load_a_savedmodel) 模型，请参阅 [使用 ModelMaker 训练模型] 一节获得相关的指南。
+ModelMaker tensorflow部署部分基于 [TensorFlow Serving](https://github.com/tensorflow/serving)，一个 TensorFlow 官方的开箱即用的部署工具，借助 TensorFlow Serving，您几乎不需要任何额外的操作就可以轻松地将训练好的模型部署至我们的服务器上。如果您还没有可用于部署的 [SavedModel](https://tensorflow.google.cn/guide/saved_model#build_and_load_a_savedmodel) 模型，请参阅 [使用 ModelMaker-tensoflow 训练模型] 一节获得相关的指南。
 
 
 
@@ -24,14 +24,6 @@ ModelMaker 部署部分基于 [TensorFlow Serving](https://github.com/tensorflow
 
 
 在您选定正确的文件夹并点击开始部署后，ModelMaker 会自动将该文件夹下最新版本（数字最大）的模型部署至服务器上，您可以通过 http 请求来进行推理
-
-
-
-## 发送推理请求
-
-在您部署模型后，***系统会提供接受推理请求的接口 url***，您可以通过 REST API 发送推理请求，请求的格式请参照 [TensorFlow Serving 推理请求格式](https://www.tensorflow.org/tfx/serving/api_rest#request_format_2) , 请注意，ModelMaker 只接受 Predict 格式的推理请求。
-
-
 
 ## 自定义 预处理/后处理 函数
 
@@ -60,3 +52,10 @@ def output_fn(result):
     return response_body
 ```
 
+## 发送推理请求
+
+在您部署模型后，***系统会提供接受推理请求的接口 url***，您可以通过 REST API 发送推理请求:
+- 未自定义预处理函数时，请求的格式请参照 [TensorFlow Serving 推理请求格式](https://www.tensorflow.org/tfx/serving/api_rest#request_format_2) 
+- 自定义预处理函数时，请求的格式input_fn可以解析即可
+
+请注意，ModelMaker 只接受 Predict 格式的推理请求。
