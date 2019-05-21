@@ -6,6 +6,7 @@ echo "===================列出数据集目录下的文件情况================
 ls -l /opt/ai/input/data 
 
 echo "==========在训练输出目录创建一个假的模型文件model.txt===================="
+mkdir /opt/ai/output/
 touch /opt/ai/output/model.txt
 ls -l /opt/ai/output/
 echo "========================================================================="
