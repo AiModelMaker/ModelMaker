@@ -34,7 +34,18 @@
                     …
                     class_nameN            //分类N
 ## 3.超参定义
-　　待补充  
+用户可定义的超参如下：  
+- optimizer：优化器的类型。目前支持的优化器有`{adadelta, adagrad, adam, ftrl, momentum,sgd, rmsprop}`。默认值：`rmsprop`。  
+- batch_size：训练时批(batch)大小。即每次提供给优化器的样本数目。默认值：`32`  
+- learning_rate：训练时的初始学习率。默认值：`0.01`  
+- learning_rate_decay_factor：学习率的衰减系数。默认值：`0.94`  
+- learning_rate_decay_type：学习率衰减策略。可选值：`{fixed, exponential, polynomial}`，分别对应于以固定值衰减、指数衰减和多项式衰减。默认值：`exponential`，即指数衰减。  
+- end_learning_rate：终止学习率， 默认值：`0.0001`  
+- weight_decay：正则项系数，控制正则项对损失函数的影响程度，以更好地防止过拟合。默认值：`0.000004`  
+- max_number_of_steps：训练的最大迭代步数。默认值：`1000`  
+- save_interval_secs：训练时的概要信息（summary） 多长时间打印一次， 单位为秒。默认值：`600`。  
+- save_summaries_secs：训练时多长时间保存一次checkpoints，单位为秒。默认值：`600`.  
+
 ## 4.推理接口说明
 ### 请求接口：
 　　采用HTTP multipart/form-data格式，将推理图片POST到推理接口进行请求。使用CURL命令发送预测请求进行测试，请求格式如下：
