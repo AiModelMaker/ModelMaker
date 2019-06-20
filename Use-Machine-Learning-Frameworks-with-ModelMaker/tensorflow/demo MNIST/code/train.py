@@ -4,7 +4,7 @@ import tensorflow as tf
 
 
 dataset_dir = '/opt/ai/input/data/'
-ckpt = '/opt/ai/output/model/model.ckpt'
+ckpt = '/opt/ai/output/model.ckpt'
 ### download and loading the data
 from  tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets(dataset_dir, one_hot=True)
