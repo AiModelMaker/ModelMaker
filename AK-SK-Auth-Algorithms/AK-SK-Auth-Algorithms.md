@@ -2,14 +2,14 @@
 ## 1.AK/SK签名认证算法介绍  
 　　推理接口使用HTTP请求头中的Authorization字段进行鉴权，鉴权通过后才提供推理服务，鉴权失败则返回http 401。  
 
-###1.1 从IAM获取AK、SK值：  
+### 1.1 从IAM获取AK、SK值：  
 　　AK: Access Key Id  
 　　SK: Secret Access Key  
-###1.2 签名头部说明（SignedHeaders）：  
+### 1.2 签名头部说明（SignedHeaders）：  
 　　SignedHeaders描述使用请求头中的哪些字段进行签名，字段间以‘;’进行分隔，不区分大小写。当前至少需要包含host、content-type、date，三个字段，且请求头中需要携带这三个头部。  
 　　示例如下：  
 　　　　SignedHeaders=host;content-type;date  
-###1.3 待签名的字符串（signingStr）：  
+### 1.3 待签名的字符串（signingStr）：  
 　　signingStr依据SignedHeaders中指定的头部对应的值进行生成，以‘\n’分隔。  
    ```
          POST /ModelMaker/predict HTTP/1.1
@@ -20,11 +20,11 @@
          Date: Mon, 12 Jul 2019 09:45:44 GMT
 ```
 　　如上http请求头，SignedHeaders=host;content-type;date时，则signingStr= "501750.wangsu.service.com:10000" + "\n" + “application/json” + "\n" + "Mon, 12 Jul 2019 09:45:44 GMT"  
-###1.4 签名（Signature）：  
+### 1.4 签名（Signature）：  
 　　Signature签名，对signingStr字符串使用SK先进行SHA1加密，加密后，进行BASE64转化。  
 　　Signature=urlsafe_base64_encode (hmac_sha1(signingStr,SK))  
 
-###1.5构造Authorization头部：  
+### 1.5构造Authorization头部：  
 ```
   Authorization需要包含以下信息：  
       WS-HMAC-SHA1（加密算法，当前只有WS-HMAC-SHA1）
@@ -37,7 +37,7 @@
                  SignedHeaders=host;content-type;date,
                  Signature=signature
   ```
-###1.6携带请求头发起请求：  
+### 1.6携带请求头发起请求：  
 　　携带SignedHeaders中指定的请求头，及Authorization请求头，向推理服务的url发起请求即可。
 
 ## 2.示例代码  
