@@ -112,6 +112,7 @@ def main():
     data, label = prepare_data(0)
     payload =  {"image": data.tolist()[0]}
 
+    #向推理服务器地址，发起请求
     response = requests.post('http://501750.wangsu.service.com:10000/ModelMaker/predict',data=json.dumps(payload), headers=build_request_head())
     response.raise_for_status()
     
