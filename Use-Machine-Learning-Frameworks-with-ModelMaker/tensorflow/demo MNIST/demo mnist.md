@@ -94,8 +94,7 @@ _ _ _
 　　　　　　资源配置： 推理服务的资源配置，本例中使用最小配置 4核8G即可  
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
-部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK信息，后续模拟推理时，需要依赖这些信息。  
-![Image text](images/predict_info.png)
+部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口信息，后续模拟推理时，需要依赖这些信息。  
 ## 7.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
 ```
@@ -106,7 +105,55 @@ import requests
 import json
 import tensorflow as tf
 
-def _prepare_data(n):
+import datetime
+import base64
+import hmac
+import hashlib
+
+def get_current_date():
+    date = datetime.datetime.strftime(datetime.datetime.utcnow(), "%a, %d %b %Y %H:%M:%S GMT")
+    return date
+
+def to_sha1_base64(signingStr, secret):
+    #print(signingStr)
+    hmacsha1 = hmac.new(secret.encode(), signingStr.encode(), hashlib.sha1)
+    return base64.b64encode(hmacsha1.digest()).decode()
+
+def build_request_head():
+    #用户的AK
+    ak = 'MIl3JP6JBejL8wTALJFHnSBgkXwEpv5O1ZCR'
+    #用户的SK
+    sk = 'xVcz6SouAbPtHn7VHOc1HyCAsJZy61d6L4YMzWVCbQzq2qTSFrMmwxpBqeWcIDwI'
+
+    #标识需要对哪些字段进行加密
+    SignedHeaders = 'host;content-type;date'
+
+    # 请求头字段说明 
+    #  Host: 推理服务域名
+    #  Content-Type: 请求内容类型 
+    #  Date: 日期
+    #  Authorization: 调用说明中的AK值
+    headers = {
+        
+                'Host': '501750.wangsu.service.com:10000',
+                'Content-Type': 'application/json',
+                'Date': get_current_date(),
+                'Authorization': '调用说明中的AK值'
+             }
+    
+    #signingStr= host + \n + content-type + \n + date
+    signingStr = headers['Host'] + '\n' + headers['Content-Type'] + '\n' + headers['Date']
+    
+    signature = to_sha1_base64(signingStr, sk)
+    #Authorization = WS-HMAC-SHA1,
+    #                AK=Zcg0eDmsZYK0cwmP1skyUmn9kwsmQM0HUU5, 
+    #                SignedHeaders=host;content-type;date, 
+    #                Signature=signature
+    headers['Authorization'] = 'WS-HMAC-SHA1 '+ 'AK='+ ak +  ',SignedHeaders=' + SignedHeaders + ',Signature=' + signature
+    print( headers['Authorization'])
+    return headers
+
+def prepare_data(n):
     """prepare data for inference"""
     mnist = tf.keras.datasets.mnist
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -117,14 +164,10 @@ def _prepare_data(n):
 
 
 def main():
-    data, label = _prepare_data(0)
+    data, label = prepare_data(0)
     payload =  {"image": data.tolist()[0]}
 
-    headers = {
-            'Content-Type': 'application/json',
-            'Authorization':'调用说明中的AK值'
-         }
-    response = requests.post('调用说明中的API调用接口地址',data=json.dumps(payload), headers=headers)
+    response = requests.post('http://501750.wangsu.service.com:10000/ModelMaker/predict',data=json.dumps(payload), headers=build_request_head())
     response.raise_for_status()
     
     print('\nGround Truth class is:', label)   
