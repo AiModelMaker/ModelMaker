@@ -63,8 +63,7 @@ _ _ _
 　　　　　　资源配置： 推理服务的资源配置，本例中使用最小配置 4核8G即可  
 　　　　　　实例个数： 创建多少个实例进行推理服务，本例中选择 1即可  
 _ _ _
-部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口、AK信息，后续模拟推理时，需要依赖这些信息。  
-![Image text](../images/%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E.png)
+部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口等信息，后续模拟推理时，需要依赖这些信息。  
 
 ## 5.模拟推理
 推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
@@ -76,8 +75,11 @@ io.imshow(img)
 
 files = {'image': ('推理图片名称', open('推理图片路径', 'rb'), 'image/jpeg', {})}
 headers = {
-            'Authorization':'调用说明中的AK值'
-         }
+       'Host': '域名',
+       'Content-Type': 'application/json',
+       'Date': ‘时间’,
+       'Authorization': '签名校验信息'
+}
 r = requests.post('调用说明中的API调用接口地址', files=files, headers=headers) 
 print(r.text)
 
