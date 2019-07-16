@@ -48,12 +48,13 @@
 
 ## 4.推理接口说明
 ### 请求接口：
-　　采用HTTP multipart/form-data格式，将推理图片POST到推理接口进行请求。使用CURL命令发送预测请求进行测试，请求格式如下：
+　　采用HTTP multipart/form-data格式，将推理图片POST到推理接口进行请求。使用CURL命令发送预测请求进行测试，请求格式如下[推理接口AK/SK签名认证算法详解](https://github.com/AiModelMaker/ModelMaker/blob/master/AK-SK-Auth-Algorithms/AK-SK-Auth-Algorithms.md)：
     
-   	curl -F 'image=@图片路径' -H ' Authorization:AK值' -X POST 在线服务地址 –v
+   	curl -F 'image=@图片路径' -H ' Authorization:签名校验信息' -X POST 在线服务地址 –v
   			“-F”是指上传数据的是文件，本例中参数名为images，这个名字可以根据具体情况变化，@后面是图片的存储路径。
-  			“-H”是post命令的headers，Headers的Key值为Authorization，Authorization值为发布时，获取到的AK值。
+  			“-H”是post命令的headers，Headers的Key值为Authorization，Authorization值为签名校验信息。[](http://)
   			“POST”后面跟随的是在线服务的调用地址。
+
 ### 响应内容：
 　　响应内容为json格式，返回请求图片，经过推理后，归属于每个分类的概率，概率越高，则此图片归属于此分类的可能性越高。
     
