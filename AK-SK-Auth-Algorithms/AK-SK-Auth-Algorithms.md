@@ -76,20 +76,20 @@ def build_request_head():
     #  Host: 推理服务域名
     #  Content-Type: 请求内容类型 
     #  Date: 日期
-    #  Authorization: 调用说明中的AK值
+    #  Authorization: 签名校验信息
     headers = {
         
                 'Host': '501750.wangsu.service.com:10000',
                 'Content-Type': 'application/json',
                 'Date': get_current_date(),
-                'Authorization': '调用说明中的AK值'
+                'Authorization': '签名校验信息'
              }
     
     #signingStr= host + \n + content-type + \n + date
     signingStr = headers['Host'] + '\n' + headers['Content-Type'] + '\n' + headers['Date']
     
     signature = to_sha1_base64(signingStr, sk)
-    #Authorization = WS-HMAC-SHA1,
+    #Authorization = WS-HMAC-SHA1 
     #                AK=Zcg0eDmsZYK0cwmP1skyUmn9kwsmQM0HUU5, 
     #                SignedHeaders=host;content-type;date, 
     #                Signature=signature
