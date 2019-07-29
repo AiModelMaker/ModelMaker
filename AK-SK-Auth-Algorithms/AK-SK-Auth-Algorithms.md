@@ -5,6 +5,7 @@
 ### 1.1 从IAM获取AK、SK值：  
 　　AK: Access Key Id  
 　　SK: Secret Access Key  
+   设置说明：https://www.wangsucloud.com/index.html#/help/details/20808/21504
 ### 1.2 签名头部说明（SignedHeaders）：  
 　　SignedHeaders描述使用请求头中的哪些字段进行签名，字段间以‘;’进行分隔，不区分大小写。当前至少需要包含host、content-type、date，三个字段，且请求头中需要携带这三个头部。  
 　　示例如下：  
