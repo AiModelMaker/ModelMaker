@@ -96,7 +96,8 @@ _ _ _
 _ _ _
 部署完成后，可以在服务的详细页中的调用说明，查看 API调用接口信息，后续模拟推理时，需要依赖这些信息。  
 ## 7.模拟推理
-推理服务部署完成后，即可通过API调用模拟推理请求。模拟代码如下：  
+推理服务部署完成后，即可通过API调用模拟推理请求。详细推理调用说明：https://www.wangsucloud.com/index.html#/help/details/20808/21504
+模拟代码如下：  
 ```
 from __future__ import print_function
 import numpy as np
@@ -132,13 +133,13 @@ def build_request_head():
     #  Host: 推理服务域名
     #  Content-Type: 请求内容类型 
     #  Date: 日期
-    #  Authorization: 调用说明中的AK值
+    #  Authorization: 签名认证信息
     headers = {
         
                 'Host': '501750.wangsu.service.com:10000',
                 'Content-Type': 'application/json',
                 'Date': get_current_date(),
-                'Authorization': '调用说明中的AK值'
+                'Authorization': '签名认证信息'
              }
     
     #signingStr= host + \n + content-type + \n + date
